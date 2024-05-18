@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task.title }}</strong><br>
+            Description: {{ task.description }}<br>
+            Completed: {{ task.completed }}<br>
+            Priority: {{ task.priority }}<br>
+            Label: {{ task.label }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
