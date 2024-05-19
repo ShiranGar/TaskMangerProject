@@ -1,26 +1,14 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 import uuid
+from models import Task, TaskManager  # Import the Task and TaskManager models
 from firebase_config import db  # Import Firebase configuration
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
-
-# Define the data models
-class Task(BaseModel):
-    id: str
-    title: str
-    description: Optional[str] = None
-    completed: bool = False
-    priority: str  # New field for priority
-    label: str  # New field for label
-
-class TaskManager(BaseModel):
-    tasks: List[Task] = []
 
 task_manager = TaskManager()
 

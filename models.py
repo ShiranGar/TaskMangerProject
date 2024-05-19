@@ -7,10 +7,9 @@ class Task(BaseModel):
     title: str
     description: Optional[str] = None
     completed: bool = False
-    priority: str  # New field for priority
+    priority: str # New field for priority
     label: str  # New field for label
 
 class TaskManager(BaseModel):
     tasks: list[Task] = []
 
-task_manager = TaskManager()
