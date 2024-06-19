@@ -1,0 +1,12 @@
+# Python cache and virtual environment
+__pycache__/
+
+
+# Test coverage reports
+.pytest_cache/
+
+
+# Virtual environment
+venv/
+env/
+.venv/

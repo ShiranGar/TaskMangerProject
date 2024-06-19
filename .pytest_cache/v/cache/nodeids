@@ -1,0 +1,9 @@
+[
+  "test_main.py::test_create_task",
+  "test_main.py::test_delete_task",
+  "test_main.py::test_read_task",
+  "test_main.py::test_read_tasks",
+  "test_main.py::test_read_tasks_by_priority",
+  "test_main.py::test_read_uncompleted_tasks",
+  "test_main.py::test_update_task"
+]
