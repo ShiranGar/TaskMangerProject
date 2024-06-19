@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from typing import List
+from typing import List,Literal
 import uuid
 from models import Task, TaskManager  # Import the Task and TaskManager models
 from firebase_config import db  # Import Firebase configuration
@@ -46,14 +46,14 @@ async def delete_task(task_id: str):
     task_ref.delete()
     return {"message": "Task deleted successfully"}
 
-@app.get("/tasks/uncompleted", response_model=List[Task])
-async def read_uncompleted_tasks():
-    tasks = [task.to_dict() for task in db.collection("tasks").where("completed", "==", False).stream()]
-    return tasks
-
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     tasks = [task.to_dict() for task in db.collection("tasks").stream()]
     return templates.TemplateResponse("index.html", {"request": request, "tasks": tasks})
+
+@app.get("/tasks/priority/{priority}", response_model=List[Task])
+async def read_tasks_by_priority(priority: Literal["low", "medium", "high"]):
+    tasks = [task.to_dict() for task in db.collection("tasks").where("priority", "==", priority).stream()]
+    return tasks
 
 # Run the app with: uvicorn main:app --reload

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional,Literal
 import uuid
 
 class Task(BaseModel):
@@ -7,7 +7,7 @@ class Task(BaseModel):
     title: str
     description: Optional[str] = None
     completed: bool = False
-    priority: str # New field for priority
+    priority: Literal["low", "medium", "high"]
     label: str  # New field for label
 
 class TaskManager(BaseModel):

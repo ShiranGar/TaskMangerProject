@@ -1,12 +1,29 @@
+# version: '3.8'
+
+# services:
+#   fastapi:
+#     build: .
+#     ports:
+#       - "8080:80"
+#     volumes:
+#       - .:/app
+#     environment:
+#       - PYTHONUNBUFFERED=1
+#     command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 version: '3.8'
 
 services:
   fastapi:
     build: .
     ports:
-      - "8080:80"
+      - "8000:8000"
     volumes:
       - .:/app
-    environment:
-      - PYTHONUNBUFFERED=1
-    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  tests:
+    build: .
+    volumes:
+      - .:/app
+    command: ["pytest", "test_main.py"]
+
